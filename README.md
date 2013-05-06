@@ -1,6 +1,6 @@
 ## Readme
 
-The idea behind this is to have a unique configuration for nvALT custom css and shared between different machines.
+The idea behind this is to have a unique configuration for nvALT custom css shared between different machines.
 I used Dropx to achive this, but you can use any location reachable from your machine.
 
 ### Use the shared template
