@@ -17,11 +17,9 @@ I used Dropx to achive this, but you can use any location reachable from your ma
 In `template.html` search for the lines :
 
      <!-- Import Stylesheet -->
-      <style type="text/css">
-         @import url("[CUSTOMIZE WITH YOUR DROPBOX PATH]/nvalt_dropbox_custom_template/custom.css");    
-      </style>
+      <link rel="stylesheet" href="file:///Users/damo_ma/Documents/Dropbox/ApplicationSupportDB/nvALT/styles/custom_BRETT.css">
      <!-- Import Stylesheet for code highlight -->
-      <link rel="stylesheet" href="file://[CUSTOMIZE WITH YOUR DROPBOX PATH]/nvalt_dropbox_custom_template//code_highlight/github.css">
+      <link rel="stylesheet" href="file:///Users/damo_ma/Documents/Dropbox/ApplicationSupportDB/nvALT/code_highlight/sunburst.css">
 
 Change the first CSS with one of your choice in `/styles`, for the main document style, and the second with one from `/code_highlight`, for different highlight styles.
 
@@ -47,11 +45,6 @@ The javascript inclusion needs the whole path on your machine, for example Mac O
     <script src="file:///Users/kidpixo/Documents/Dropbox/nvalt_dropbox_custom_template/....
 
 notice that your final path should start with the / like this `file:///Users` ! 
-
-On the othe side the CSS inclusion need only the full path to your file, something like
-
-         @import url("/Users/kidpixo/Documents/Dropbox/nvalt_dropbox_custom_template/custom.css");    
-
 
 I did the mistakes myself :-P and they are hard to find!
 
