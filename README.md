@@ -26,6 +26,53 @@ Change the first CSS with one of your choice in `/styles`, for the main document
 
 I included a couple of css found in Marked.app, thank thanks to [Brett Terpstra](http://brettterpstra.com) again.
 
+### EDIT : Table Of Contents
+
+After Brett's post [A GitHub README table of contents Service
+](http://brettterpstra.com/2014/07/01/github-toc-service/) (thanks for the hints!)
+
+I added a small javascript in the `template.html` to create a Table of Contents on the fly.
+
+I suggest to use header 1 or 2 for the ToC (# or ##), if greater the added margins could mess up (it's a bug, but let's think it's a feature :-)
+
+**Note** : The table is created **only** if the id='toc' is found in document. This way you can easily switch it on and off.
+
+You can customize the id to attache the table to in the `template.html`, there some some indication in the `template.html` file.
+
+I'm less than good at javascript, I just grab some code [here](http://codepen.io/chriscoyier/pen/EnLwb) (thanks [Chris Coyer](http://codepen.io/chriscoyier/)) and modified a bit for my purpose.
+
+Now I scans all the header and add left margin to the `<li>` elements via
+
+    <li style="margin-left: 10px;">
+	 Some stuff
+	 </li>
+
+The loop does :
+
+- fix the "base index" as first header element found.
+- set indentation equal to `(actual_index-base_index)*margin_pixels`, 
+
+`margin_pixels` is 10 pixel by default, adjust it here below to have less or more space  in the `template.html` file.
+
+Some example :
+
+	<h2> -> <h2>
+	<h3> -> <h3 style="margin-left:10px;">
+	<h4> -> <h4 style="margin-left:20px;">
+	<h2> -> <h2>
+	<h3> -> <h3 style="margin-left:10px;">
+	<h2> -> <h2>
+
+or something like :
+
+		h2
+		  h3
+		   h4
+		h2
+		  h3
+		h2
+
+
 ### NOTE: Where is the javascript?
 
 You may notice I referred to the  [highlight](http://softwaremaniacs.org/soft/highlight/en/download/) and [jquery](http://jquery.com/) version from Dropbox and not using the one in the Brett's original Lopash pacakge.

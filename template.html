@@ -14,8 +14,40 @@ by Mario D'Amore alias kidpixo , 2003
 
  <!-- Import Stylesheet -->
    <link rel="stylesheet" href="file://[CUSTOMIZE WITH YOUR DROPBOX PATH]/nvalt_dropbox_custom_template/styles/custom_BRETT.css">
+<!-- available text styles  css:
+	UpstandingCitizen.css
+	amblin.css
+	antique.css
+	custom.css
+	custom_BRETT.css
+	danielmiessler.css
+	github.css
+	gridless.css
+	group_wiki.css
+	modern.css
+	swiss.css
+	tocstyle.css
+-->
  <!-- Import Stylesheet for code highlight -->
   <link rel="stylesheet" href="file://[CUSTOMIZE WITH YOUR DROPBOX PATH]/nvalt_dropbox_custom_template/code_highlight/sunburst.css">
+<!-- available  code_highlight css:
+	ir_black.css        : black background, well contrasted text
+	solarized_dark.css  : black background, well contrasted text (back : #002b36)
+	sunburst.css        : black background, well contrasted text
+	arta.css            : dark background, some contrasted text
+	dark.css            : dark background, low contrast text
+	zenburn.css         : dark background, low contrast text
+	xcode.css          : white background, well contrasted text
+	magula.css          : white background, well contrasted text
+	solarized_light.css : white background, contrasted text
+	vs.css              : white background, contrasted text
+	default.css         : white background, some contrasted text
+	github.css          : white background, some contrasted text
+	idea.css            : white background, some contrasted text
+	ascetic.css         : white background, low contrasted text
+see http://highlightjs.org/static/test.html for tests
+-->
+
 </head>
 
 <body>
@@ -69,5 +101,81 @@ by Mario D'Amore alias kidpixo , 2003
   </script>
   <script src="file://[CUSTOMIZE WITH YOUR DROPBOX PATH]/nvalt_dropbox_custom_template/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
+<script>
+////////////////////////////////////////////////////////////
+// Create a Table of Contents based on the Header level, 
+// only if the id='toc' is found in the document.
+// 
+// The first header element fix the base index, 
+// subsequent elemnts get a indentation equal to :
+//   (actual index-basis )*margin_pixels
+// 
+// Some tweak:
+// 1. Adjust margin_pixels here below to have less or more space.
+// 2. Change the id to add the table to: the variable toc_id
+// 
+////////////////////////////////////////////////////////////
+
+  var toc_id = 'toc'
+
+  if( $("#"+toc_id).length != 0) { 
+  
+ var margin_pixels = 10
+
+  var toc_container =
+    "<nav role='navigation' class='table-of-contents'>" +
+      "<ul>";
+	
+  var basehIndex = "";
+  var newLine, el, title, link;
+
+  $("h2,h3,h4,h5").each(function() {
+
+    el = $(this); 
+    title = el.text();
+    link = "#" + el.attr("id");
+	 hIndex = parseInt(this.nodeName.substring(1))
+
+	 if( basehIndex.length == 0 ) { 
+		 basehIndex = hIndex // first index fix the base of this document
+	 }
+ 
+	 var margin = ""
+	 if( hIndex > basehIndex ) { 
+		 margin = ' style="margin-left: '+margin_pixels*(hIndex-basehIndex)+'px;"'
+	 }
+
+    newLine =
+      "<li"+margin+">" +
+        "<a href='" + link + "'>" +
+          title +
+        "</a>" +
+      "</li>";
+
+    toc_container += newLine;
+
+  });
+
+  toc_container +=
+     "</ul>" +
+    "</nav>";
+
+  $("#"+toc_id).after(toc_container);
+}
+
+</script>
+  
+  
+  
+<!--
+<h1>Available Keywords:</h1>
+support :<br>
+{%support%}<br>
+title :<br>
+{%title%}<br>
+style :<br>
+{%style%}<br>
+  -->
+
 </body>
 </html>
