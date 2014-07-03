@@ -50,27 +50,32 @@ Now I scans all the header and add left margin to the `<li>` elements via
 The loop does :
 
 - fix the "base index" as first header element found.
-- set indentation equal to `(actual_index-base_index)*margin_pixels`, 
+- set indentation equal to `(actual_index-base_index)*margin_pixels`
+- set font-size equal to `100.-font_scaling_step*(hIndex-basehIndex)`
 
-`margin_pixels` is 10 pixel by default, adjust it here below to have less or more space  in the `template.html` file.
+`margin_pixels` is 10 pixel by default and `font_scaling_step` is 10% , adjust in the `template.html` file.
+
+Standard values increase the margine of 10px and decrease the font size of 10% each level of header down.
 
 Some example :
 
-	<h2> -> <h2>
-	<h3> -> <h3 style="margin-left:10px;">
-	<h4> -> <h4 style="margin-left:20px;">
-	<h2> -> <h2>
-	<h3> -> <h3 style="margin-left:10px;">
-	<h2> -> <h2>
+	<h2>title 1</h2>     -> <h2>title 1</h2>
+	<h3>title 1.1</h3>   -> <h3 style="font-size: 90%;margin-left:10px;">title 1.1</h3>
+	<h4>title 1.1.1</h4> -> <h4 style="font-size: 80%;margin-left:20px;">title 1.1.1</h4>
+	<h2>title 2</h2>     -> <h2>title 2</h2>
+	<h3>title 2.1</h3>   -> <h3 style="font-size: 90%;margin-left:10px;">title 2.1</h3>
+	<h2>title 3</h2>     -> <h2>title 3</h2>
 
-or something like :
+and rendered wil be (apart `the font-size` style):
 
-		h2
-		  h3
-		   h4
-		h2
-		  h3
-		h2
+	title 1
+		title 1.1
+			title 1.1.1
+	title 2
+		title 2.1
+	title 3
+		
+
 
 
 ### NOTE: Where is the javascript?

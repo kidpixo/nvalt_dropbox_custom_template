@@ -111,8 +111,10 @@ see http://highlightjs.org/static/test.html for tests
 //   (actual index-basis )*margin_pixels
 // 
 // Some tweak:
-// 1. Adjust margin_pixels here below to have less or more space.
-// 2. Change the id to add the table to: the variable toc_id
+// 
+// 1. Change the id to add the table to: the variable toc_id
+// 2. Adjust margin_pixels here below to have less or more space.
+// 3. Adjust the percent of font redutcion for each level down
 // 
 ////////////////////////////////////////////////////////////
 
@@ -120,7 +122,8 @@ see http://highlightjs.org/static/test.html for tests
 
   if( $("#"+toc_id).length != 0) { 
   
- var margin_pixels = 10
+  var margin_pixels = 10
+  var font_scaling_step = 15 // % of font reduction for each level down
 
   var toc_container =
     "<nav role='navigation' class='table-of-contents'>" +
@@ -142,7 +145,7 @@ see http://highlightjs.org/static/test.html for tests
  
 	 var margin = ""
 	 if( hIndex > basehIndex ) { 
-		 margin = ' style="margin-left: '+margin_pixels*(hIndex-basehIndex)+'px;"'
+  		 margin = ' style="font-size: '+(100.-font_scaling_step*(hIndex-basehIndex))+'%  ; margin-left: '+margin_pixels*(hIndex-basehIndex)+'px;"'
 	 }
 
     newLine =
